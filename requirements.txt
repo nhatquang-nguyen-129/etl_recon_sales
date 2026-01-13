@@ -1,8 +1,43 @@
-fastapi==0.116.1
-uvicorn[standard]==0.35.0
-httpx==0.28.1
-pydantic==2.11.7
-sqlalchemy==2.0.41
-asyncpg==0.30.0
-python-dotenv==1.1.1
-alembic==1.16.4
+# Python ultilities for reading/writing xlsx files
+openpyxl==3.1.5
+
+# Python ulti for YAML parser and emitter
+pyyaml==6.0.3
+
+# Python ultilities for system monitoring
+psutil==7.2.1
+
+# Python libraries for array computing
+numpy==2.4.0
+
+# Python libraries for time series and statistics
+pandas==2.3.3
+
+# Python libraries for Apache Arrow
+pyarrow==22.0.0
+
+# Google modules for Authentication
+google-auth==2.45.0
+
+# Google modules for Authentication Libraries
+google-auth-oauthlib==1.2.3
+
+# Google modules for GCP BigQuery API client
+google-cloud-bigquery==3.39.0
+
+# Google modules for GCP BigQuery Storage API client
+google-cloud-bigquery-storage==2.36.0
+
+# Google modules for GCP Cloud Storage API client
+google-cloud-storage==3.7.0
+
+# Google modules for GCP BigQuery dbt
+dbt-bigquery==1.11.0
+
+# Google modules for Spreadsheets Python API v4
+gspread==6.2.1
+
+# Google module for GCP BigQuery Native Pandas Connector
+pandas-gbq==0.32.0
+
+# Last updated: 2026-01-13
