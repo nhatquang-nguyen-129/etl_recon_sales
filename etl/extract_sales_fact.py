@@ -9,13 +9,13 @@ import pandas as pd
 from plugins.local import InternalLocalExtractor
 from plugins.gspread import InternalGoogleSheetExtractor
 
-def extract(
+def extract_sales_fact(
     *,
     backend: str,
     direction: str,
 ) -> pd.DataFrame:
     """
-    Generic Extract Dispatcher
+    Extract Sales data
     ---
     Principles:
         1. Validate backend
