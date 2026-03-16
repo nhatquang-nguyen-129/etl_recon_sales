@@ -65,22 +65,18 @@ class LocalExtractor:
             df = reader(path)
 
             print(
-                "✅ [FETCH] Successfully fetched "
-                f"{len(df):,} row(s) from local file "
+                "✅ [FETCH] Successfully extracted "
+                f"{len(df)} row(s) from local file path "
                 f"{path}."
             )
-            print(msg)
-            logging.info(msg)
 
             return df
 
         except Exception as e:
 
-            msg = (
+            error = RuntimeError(
                 "❌ [FETCH] Failed to fetch local file from path "
                 f"{path} due to error {e}."
             )
-            print(msg)
-            logging.exception(msg)
-
-            raise
+            
+            raise error from e
