@@ -1,67 +1,70 @@
 import os
-import logging
+import sys
+from pathlib import Path
+ROOT_FOLDER_LOCATION = Path(__file__).resolve().parents[2]
+sys.path.append(str(ROOT_FOLDER_LOCATION))
+
 import pandas as pd
 
 class LocalExtractor:
     """
     Internal Local File Loader
-    ---------
-    Workflow:
+    ---
+    Principles:
         1. Detect file extension
-        2. Map extension -> pandas reader
-        3. Read file into DataFrame
+        2. Map extension to Python pandas reader
+        3. Read file into Python DataFrame
         4. Raise ValueError if unsupported    
     ---
     Returns:
         DataFrame
     """
 
-# 1.1 Supported formats
-    SUPPORTED_FORMATS = {
-        ".csv": pd.read_csv,
-        ".parquet": pd.read_parquet,
-        ".json": pd.read_json,
-        ".xlsx": pd.read_excel,
-    }
-
-# 1.2 Initialize
+    # 1.1. Initialize
     def __init__(self, direction: str) -> None:
         self.direction = direction
 
-
-# 1.3 Entrypoint
+    # 1.2. Entrypoint
     def fetch(self) -> pd.DataFrame:
+
+        SUPPORTED_LOCAL_FORMATS = {
+            ".csv": pd.read_csv,
+            ".parquet": pd.read_parquet,
+            ".json": pd.read_json,
+            ".xlsx": pd.read_excel,
+        }
 
         path = self.direction
 
         try:
 
-            msg = (
-                "🔍 [FETCH] Fetching local file from path "
-                f"{path}."
+            print(
+                "🔍 [FETCH] Extracting local file from path "
+                f"{path}..."
             )
-            print(msg)
-            logging.info(msg)
 
             if not os.path.exists(path):
                 raise FileNotFoundError(
-                    f"Local file not found: {path}"
+                    f"❌ [FETCH] Failed to extract local file from path "
+                    f"{path} due to file not found."
                 )
 
-            ext = os.path.splitext(path)[1].lower()
+            extension = os.path.splitext(path)[1].lower()
 
-            reader = self.SUPPORTED_FORMATS.get(ext)
+            reader = self.SUPPORTED_LOCAL_FORMATS.get(extension)
 
             if not reader:
+                
                 raise ValueError(
-                    "Unsupported file format "
-                    f"{ext}. Supported formats: "
-                    f"{list(self.SUPPORTED_FORMATS.keys())}"
+                    "❌ [FETCH] Failed to extract local file from path "
+                    f"{path} due to extension "
+                    f"{extension} is not one of supported formats "
+                    f"{list(self.SUPPORTED_LOCAL_FORMATS.keys())}"
                 )
 
             df = reader(path)
 
-            msg = (
+            print(
                 "✅ [FETCH] Successfully fetched "
                 f"{len(df):,} row(s) from local file "
                 f"{path}."
