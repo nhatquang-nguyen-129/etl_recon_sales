@@ -13,5 +13,14 @@ env/
 venv/
 ENV/
 
-# Local file
-/data/
+# pip-tools generated files
+requirements/*.txt
+
+# dbt artifacts
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+dbt/user.yml
+dbt/.user.yml
+.dbt/user.yml
+.dbt/.user.yml
