@@ -19,7 +19,7 @@ def extract_sales_fact(
     ---
     Principles:
         1. Validate backend
-        2. Select correct extractor plugin
+        2. Validate extractor plugin
         3. Trigger fetch process
     ---
     Returns:
@@ -46,8 +46,8 @@ def extract_sales_fact(
     df = extractor.fetch()
 
     print(
-        "✅ [EXTRACT] Extraction completed "
-        f"{len(df):,} row(s) fetched."
+        "✅ [EXTRACT] Successfully triggered sales fact extraction with "
+        f"{len(df):,} row(s)."
     )
 
     return df
