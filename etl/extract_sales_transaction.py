@@ -1,6 +1,5 @@
 import sys
 from pathlib import Path
-
 ROOT_FOLDER_LOCATION = Path(__file__).resolve().parents[2]
 sys.path.append(str(ROOT_FOLDER_LOCATION))
 
@@ -9,7 +8,7 @@ import pandas as pd
 from plugins.local import InternalLocalExtractor
 from plugins.gspread import InternalGoogleSheetExtractor
 
-def extract_sales_fact(
+def extract_sales_transaction(
     *,
     backend: str,
     direction: str,
@@ -17,7 +16,7 @@ def extract_sales_fact(
     end_date: str,
 ) -> pd.DataFrame:
     """
-    Extract sales fact
+    Extract sales transaction
     ---
     Principles:
         1. Validate backend
@@ -31,7 +30,7 @@ def extract_sales_fact(
     """
 
     print(
-        "🔄 [EXTRACT] Triggering to extract sales fact with "
+        "🔄 [EXTRACT] Triggering to extract sales transaction with "
         f"{backend} backend from "
         f"{direction}..."
     )
@@ -45,7 +44,7 @@ def extract_sales_fact(
     else:
 
         raise ValueError(
-            "❌ [EXTRACT] Failed to trigger sales fact extraction due to unsupported backend "
+            "❌ [EXTRACT] Failed to trigger sales transaction extraction due to unsupported backend "
             f"{backend}."
         )
 
@@ -53,7 +52,7 @@ def extract_sales_fact(
 
     if "Ngày bán" not in df.columns:
         raise ValueError(
-            "❌ Missing column 'Ngày bán' in source data."
+            "❌[EXTRACT] Failed to trigger sales transaction extraction due to missing column 'Ngày bán' in source data."
         )
     
     df["Ngày bán"] = pd.to_datetime(
@@ -69,7 +68,7 @@ def extract_sales_fact(
     ]
 
     print(
-        "✅ [EXTRACT] Successfully triggered sales fact extraction from "
+        "✅ [EXTRACT] Successfully triggered sales transaction extraction from "
         f"{start_date} to "
         f"{end_date} with "
         f"{len(df):,} row(s)."

@@ -7,7 +7,7 @@ import pandas as pd
 
 from plugins.google_bigquery import internalGoogleBigqueryLoader
 
-def load_sales_fact(
+def load_sales_transaction(
     *,
     df: pd.DataFrame,
     backend: str,
@@ -15,7 +15,7 @@ def load_sales_fact(
 ) -> None:
 
     """
-    Load sales Fact Table
+    Load sales transaction
     ---
     Principles:
         1. Validate input DataFrame
@@ -31,14 +31,14 @@ def load_sales_fact(
     if df.empty:
 
         print(
-            "⚠️ [LOADER] Empty sales fact DataFrame then loading will be suspended."
+            "⚠️ [LOADER] Empty sales transaction DataFrame then loading will be suspended."
         )
         
         return
 
 
     print(
-        "🔄 [LOADER] Loading sales fact with "
+        "🔄 [LOADER] Loading sales transaction with "
         f"{len(df):,} row(s) to "
         f"{backend} direction "
         f"{direction}..."
@@ -52,15 +52,15 @@ def load_sales_fact(
             df=df,
             direction=direction,
             mode="upsert",
-            keys=["date"],
-            partition={"field": "date"},
-            cluster=["campaign_id"],
+            keys=["transaction_date"],
+            partition={"field": "transaction_date"},
+            cluster=["store_id", "product_id"],
         )
 
     else:
         
         raise ValueError(
-            f"❌ [LOADER] Failed to load sales fact with "
+            f"❌ [LOADER] Failed to load sales transaction with "
             f"{len(df):,} row(s) to "
             f"{direction} direction due to unsupported backend {backend}."
         )

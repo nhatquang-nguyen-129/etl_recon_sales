@@ -5,12 +5,12 @@ sys.path.append(str(ROOT_FOLDER_LOCATION))
 
 import pandas as pd
 
-def transform_sales_fact(
+def transform_sales_transaction(
     *,
     df: pd.DataFrame
 ) -> pd.DataFrame:
     """
-    Transform sales fact
+    Transform sales transaction
     ---
     Principles:
         1. Rename columns (Vietnamese → standardized)
@@ -23,14 +23,14 @@ def transform_sales_fact(
     """
 
     print(
-        "🔄 [TRANSFORM] Transforming sales fact with "
+        "🔄 [TRANSFORM] Transforming sales transaction with "
         f"{len(df):,} row(s)..."
     )
 
     if df.empty:
         
         print(
-            "⚠️ [TRANSFORM] Empty sales fact then transformation will be suspended."
+            "⚠️ [TRANSFORM] Empty sales transaction then transformation will be suspended."
         )
         
         return df
@@ -121,7 +121,7 @@ def transform_sales_fact(
             )
 
     print(
-        "✅ [TRANSFORM] Successfully transformed sales fact with "
+        "✅ [TRANSFORM] Successfully transformed sales transaction with "
         f"{len(df):,} row(s)."
     )
 
