@@ -15,20 +15,23 @@ def extract_sales_fact(
     direction: str,
 ) -> pd.DataFrame:
     """
-    Extract Sales data
+    Extract sales fact
     ---
     Principles:
         1. Validate backend
         2. Validate extractor plugin
-        3. Trigger fetch process
+        3. Initialize plugin client
+        4. Trigger extractor
+        5. Enforce to DataFrame
     ---
     Returns:
         pandas.DataFrame
     """
 
     print(
-        "🔄 [EXTRACT] Triggering to extract "
-        f"{backend} source {direction}..."
+        "🔄 [EXTRACT] Triggering to extract sales fact with "
+        f"{backend} backend from "
+        f"{direction}..."
     )
 
     if backend == "local":
@@ -38,8 +41,9 @@ def extract_sales_fact(
         extractor = InternalGoogleSheetExtractor(direction)
 
     else:
+
         raise ValueError(
-            "❌ [EXTRACT] Failed to trigger extraction due to unsupported backend "
+            "❌ [EXTRACT] Failed to trigger sales fact extraction due to unsupported backend "
             f"{backend}."
         )
 
