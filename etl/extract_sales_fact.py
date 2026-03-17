@@ -13,6 +13,8 @@ def extract_sales_fact(
     *,
     backend: str,
     direction: str,
+    start_date: str,
+    end_date: str,
 ) -> pd.DataFrame:
     """
     Extract sales fact
@@ -49,8 +51,27 @@ def extract_sales_fact(
 
     df = extractor.fetch()
 
+    if "Ngày bán" not in df.columns:
+        raise ValueError(
+            "❌ Missing column 'Ngày bán' in source data."
+        )
+    
+    df["Ngày bán"] = pd.to_datetime(
+        df["Ngày bán"],
+        errors="coerce"
+    )
+
+    df = df[df["Ngày bán"].notna()]
+
+    df = df[
+        (df["Ngày bán"] >= pd.to_datetime(start_date)) &
+        (df["Ngày bán"] <= pd.to_datetime(end_date))
+    ]
+
     print(
-        "✅ [EXTRACT] Successfully triggered sales fact extraction with "
+        "✅ [EXTRACT] Successfully triggered sales fact extraction from "
+        f"{start_date} to "
+        f"{end_date} with "
         f"{len(df):,} row(s)."
     )
 
