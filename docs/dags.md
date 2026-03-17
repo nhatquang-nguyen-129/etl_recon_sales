@@ -301,8 +301,7 @@ source airflow_env/bin/activate
 
 - Install Airflow using constraint to prevent dependency conflict
 ```bash
-pip install "apache-airflow==2.8.1" \
-  --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.10.txt"
+pip install "apache-airflow==2.8.1" --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.8.1/constraints-3.10.txt"
 ```
 
 - Setup AIRFLOW_HOME for Windows
