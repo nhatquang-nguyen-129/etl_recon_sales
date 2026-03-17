@@ -63,4 +63,4 @@ def load_sales_fact(
             f"❌ [LOADER] Failed to load sales fact with "
             f"{len(df):,} row(s) to "
             f"{direction} direction due to unsupported backend {backend}."
-        )    
+        )
