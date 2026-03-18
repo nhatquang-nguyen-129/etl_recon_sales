@@ -24,3 +24,6 @@ dbt/user.yml
 dbt/.user.yml
 .dbt/user.yml
 .dbt/.user.yml
+
+# Data
+data/
