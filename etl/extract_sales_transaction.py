@@ -6,7 +6,6 @@ sys.path.append(str(ROOT_FOLDER_LOCATION))
 import pandas as pd
 
 from plugins.local import InternalLocalExtractor
-from plugins.gspread import InternalGoogleSheetExtractor
 
 def extract_sales_transaction(
     *,
@@ -38,9 +37,6 @@ def extract_sales_transaction(
     if backend == "local":
         extractor = InternalLocalExtractor(direction)
 
-    elif backend == "gspread":
-        extractor = InternalGoogleSheetExtractor(direction)
-
     else:
 
         raise ValueError(
@@ -48,7 +44,7 @@ def extract_sales_transaction(
             f"{backend}."
         )
 
-    df = extractor.fetch()
+    df = extractor.extract()
 
     if "Ngày bán" not in df.columns:
         raise ValueError(

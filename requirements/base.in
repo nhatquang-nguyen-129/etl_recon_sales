@@ -6,6 +6,11 @@ numpy; python_version >= "3.10"
 pandas; python_version >= "3.10"
 pyarrow; python_version >= "3.10"
 
+# File handling
+openpyxl; python_version >= "3.10"      # Excel (.xlsx)
+xlrd; python_version >= "3.10"          # Legacy Excel (.xls)
+fastparquet; python_version >= "3.10"   # Optional parquet engine
+
 # Google Cloud core
 google-auth; python_version >= "3.9"
 google-api-core; python_version >= "3.9"

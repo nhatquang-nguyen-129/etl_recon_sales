@@ -75,7 +75,6 @@ def transform_sales_transaction(
 
     NON_NULLABLE_COLUMNS = [
         "store_id",
-        "invoice_no",
         "transaction_date",
         "product_id",
         "quantity",
