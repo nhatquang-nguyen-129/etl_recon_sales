@@ -1,0 +1,10 @@
+etl_recon_sales:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: oauth
+      project: data-ads-external-report-prod
+      dataset: "{{ env_var('COMPANY') }}_dataset_google_api_mart"
+      location: asia-southeast1
+      threads: 2
