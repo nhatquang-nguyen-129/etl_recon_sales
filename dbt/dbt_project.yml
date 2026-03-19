@@ -1,14 +1,14 @@
-name: pipeline_google_ads
+name: etl_sales_transaction
 version: "1.0"
 config-version: 2
 
-profile: pipeline_google_ads
+profile: etl_sales_transaction
 
 model-paths: ["models"]
 macro-paths: ["macros"]
 
 models:
-  pipeline_google_ads:
+  etl_sales_transaction:
     stg:
       +materialized: ephemeral
     int:
