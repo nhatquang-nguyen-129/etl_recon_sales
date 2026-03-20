@@ -1,10 +1,10 @@
-etl_recon_sales:
+etl_sales_transaction:
   target: dev
   outputs:
     dev:
       type: bigquery
       method: oauth
-      project: data-ads-external-report-prod
+      project: seer-retail-sales
       dataset: "{{ env_var('COMPANY') }}_dataset_google_api_mart"
       location: asia-southeast1
       threads: 2
