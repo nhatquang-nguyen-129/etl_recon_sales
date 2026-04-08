@@ -45,6 +45,7 @@ class InternalLocalExtractor:
             )
 
             if not os.path.exists(path):
+
                 raise FileNotFoundError(
                     f"❌ [PLUGIN] Failed to extract local file from path "
                     f"{path} due to file not found."
