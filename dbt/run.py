@@ -6,13 +6,13 @@ sys.path.append(str(ROOT_FOLDER_LOCATION))
 
 import subprocess
 
-def dbt_google_ads(
+def dbt_recon_sales(
     *,
     google_cloud_project: str,
     select: str
 ):
     """
-    DBT Execution for Google Ads
+    DBT Execution for Sales Reconciliation
     ---
     Principles:
         1. Initialize dbt CLI execution environment
@@ -34,7 +34,7 @@ def dbt_google_ads(
     ]
 
     print(
-        f"🔄 [DBT] Executing dbt build for Google Ads "
+        f"🔄 [DBT] Executing dbt build for Sales Reconciliation "
         f"{select} to Google Cloud Project "
         f"{google_cloud_project}..."
     )
@@ -60,14 +60,14 @@ def dbt_google_ads(
         if process.returncode != 0:
 
             raise RuntimeError(
-                "❌ [DBT] Failed to execute dbt build for Google Ads "
+                "❌ [DBT] Failed to execute dbt build for Sales Reconciliation "
                 f"{select} to Google Cloud Project "
                 f"{google_cloud_project} with return code "
                 f"{process.returncode}."
             )
 
         print(
-            f"✅ [DBT] Successfully executed dbt build for Google Ads "
+            f"✅ [DBT] Successfully executed dbt build for Sales Reconciliation "
             f"{select} to Google Cloud Project "
             f"{google_cloud_project}."
         )
@@ -75,7 +75,7 @@ def dbt_google_ads(
     except Exception as e:
         
         raise RuntimeError(
-            "❌ [DBT] Unexpected error while executing dbt build for Google Ads "
+            "❌ [DBT] Unexpected error while executing dbt build for Sales Reconciliation "
             f"{select} to Google Cloud Project "
             f"{google_cloud_project} due to "
             f"{e}."
