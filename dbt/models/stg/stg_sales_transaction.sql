@@ -1,7 +1,11 @@
 {{
   config(
     materialized = 'ephemeral',
-    tags = ['stg', 'sales', 'transaction']
+    tags = [
+        'stg', 
+        'sales', 
+        'transaction'
+    ]
   )
 }}
 
